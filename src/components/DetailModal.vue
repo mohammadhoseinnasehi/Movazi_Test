@@ -50,7 +50,7 @@
             style="margin-right: 47%; margin-top: 8px"
             size="64"
           ></v-progress-circular>
-          <div style="margin-right: 43%; margin-top: 30px">
+          <div style="margin-right: 43%; margin-top: 20px">
             در حال بارگیری اطلاعات ...
           </div>
         </v-container>
@@ -135,6 +135,37 @@
               >
             </v-row>
           </v-card>
+          <v-card class="rounded-xl mt-8" min-width="200px">
+            <v-stepper alt-labels :value="value">
+              <v-stepper-header>
+                <v-stepper-step step="1" class="text-caption text-no-wrap">
+                  بررسی سفارش توسط فروشگاه
+                </v-stepper-step>
+
+                <v-divider></v-divider>
+
+                <v-stepper-step step="2" class="text-caption"
+                  >آماده زسازی در فروشگاه</v-stepper-step
+                >
+
+                <v-divider></v-divider>
+
+                <v-stepper-step step="3" class="text-caption">
+                  منتظر اختصاص پیک
+                </v-stepper-step>
+                <v-divider></v-divider>
+
+                <v-stepper-step step="4" class="text-caption text-no-wrap">
+                  پیک در مسیر آوردن بسته
+                </v-stepper-step>
+                <v-divider></v-divider>
+
+                <v-stepper-step step="5" class="text-caption">
+                  بسته تحویل داده شد
+                </v-stepper-step>
+              </v-stepper-header>
+            </v-stepper>
+          </v-card>
           <v-card-text class="text-center mt-3">
             نحوه پرداخت توسط مشتری :
             {{ selectedOrder.payment_method_text }}</v-card-text
@@ -152,6 +183,7 @@ export default {
   components: {},
   data() {
     return {
+      value: null,
       isLoading: true,
       selectedOrder: {}, // this object is a locall copy of every order that i click on it
     };
@@ -170,6 +202,7 @@ export default {
         )
         .then((response) => {
           this.selectedOrder = response.data.data.order;
+          this.value = this.selectedOrder.status - 2; //for set the stepper
           this.isLoading = false;
         })
         .catch((e) => {
