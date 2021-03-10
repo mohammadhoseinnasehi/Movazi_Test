@@ -1,0 +1,11 @@
+@font-face {
+    font-family: "Vazir";
+    src: url("../assets/font/Vazir-FD-WOL.woff") format("woff"), url("../assets/font/Vazir-FD-WOL.eot") format("eot"), url("../assets/font/Vazir-FD-WOL.ttf") format("ttf"), url("../assets/font/Vazir-FD-WOL.woff2") format("woff2");
+}
+
+* {
+    font-family: "Vazir";
+}
+
+
+/* use Vazir font for this project and applicate it for all strings and ... */
